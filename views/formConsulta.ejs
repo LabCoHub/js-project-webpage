@@ -1,0 +1,60 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <form name="excluir" action="/livros/remover?_method=DELETE" method="post">
+        <table border="1">
+            <tr>
+                <th> <input type="checkbox" id="checkBoxAll"> </th>
+                <th>Título</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+            </tr>
+            <% livros.forEach((livro)=> { %>
+                <tr>
+                    <td align="center"> <input type="checkbox" name="id" value="<%= livro.id %>"> </td>
+                    <td> <a href="/livros/form/<%= livro.id %>">
+                            <%= livro.titulo %>
+                        </a></td>
+                    <td>
+                        <%= livro.preco %>
+                    </td>
+                    <td>
+                        <%= livro.descricao %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+
+        <br>
+        <input type="submit" value="Excluir" />
+    </form>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js">
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // add multiple select / deselect functionality
+            $("#checkBoxAll").click(function () {
+                $('.checkBox').attr('checked', this.checked);
+            });
+            // if all checkbox are selected, check the selectall checkbox  also        
+
+            $(".checkBox").click(function () {
+                if ($(".checkBox").length == $(".checkBox:checked").length) {
+                    $("#checkBoxAll").attr("checked", "checked");
+                }
+                else {
+                    $("#checkBoxAll").removeAttr("checked");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
