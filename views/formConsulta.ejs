@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Produtos</title>
+    <!-- Link CSS -->
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/css/formConsulta.css">
+    <!-- Link Icone do Site -->
+    <link rel="shortcut icon" href="http://localhost:3000/img/icon.png" type="image/png">
+    <!-- Link FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    
+    <h1 id="main-title">Consulta de Produtos</h1>
+    <form action="/produtos/remover?_method=DELETE" method="post">
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">#</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% produtos.forEach((produto)=> { %>
+                        <tr>
+                            <td align="center"> <input id="colorido" type="checkbox" name="id" value="<%= produto.id %>"> </td>
+                            <td scope="row"> <%= produto.id %></td>
+                            <td scope="row">
+                                <a href="/produtos/form/<%= produto.id %>">
+                                    <%= produto.nome %>
+                                </a>
+                            </td>
+                            <td scope="row"><%= produto.descricao %></td>
+                            <td scope="row">R$ <%= produto.preco %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <input type="submit" value="Excluir" class="btn btn-outline-danger"/>
+            <a href="/home" id="btn-voltar" class="btn btn-outline-primary">Voltar</a>
+        </div>
+    </form>
+    
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // add multiple select / deselect functionality
+            $("#checkBoxAll").click(function () {
+                $('.checkBox').attr('checked', this.checked);
+            });       
+
+            $(".checkBox").click(function () {
+                if ($(".checkBox").length == $(".checkBox:checked").length) {
+                    $("#checkBoxAll").attr("checked", "checked");
+                }
+                else {
+                    $("#checkBoxAll").removeAttr("checked");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

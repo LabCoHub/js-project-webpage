@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="shortcut icon" href="img/icon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="modal hidden" id="modalUsuario" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Usuário não Encontrado!</h4>
+                </div>
+                <div class="modal-body">
+                    <p><h5>Usuário não encontrado. &#x1F914; <br> Por favor, verifique seu <span class="destacar">e-mail</span> e <span class="destacar">senha</span> e tente novamente</h5></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <form action="/login" method="post" onsubmit="return validarDadosLogin()">
+            <h2>Login</h2>
+
+            <label for="user">Usuário</label>
+            <input type="text" name="user" id="user" placeholder="E-mail">
+
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password">
+
+            <input type="submit" class="btn" id="btn">
+        </form>
+        <div class="cad">
+            <hr>
+            <a href="/pessoa/form" class="btn">Cadastre-se</a>
+        </div>
+    </div>
+    <script src="js/validador.js"></script>
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!-- Popper.js (obrigatório) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>        
+        <% if(error == "error") { %>
+            let modalUsuario = document.querySelector('#modalUsuario');
+            modalUsuario.classList.remove('hidden');
+            $('#modalUsuario').modal('show');
+        <% } %>
+
+        document.getElementById('user').addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+                this.classList.remove('campo-vazio');
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+                this.classList.remove('campo-vazio');
+            }
+        });
+    </script>
+</body>
+</html>

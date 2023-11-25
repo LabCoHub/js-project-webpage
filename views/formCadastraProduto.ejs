@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="shortcut icon" href="http://localhost:3000/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/css/formCadastrarProduto.css" >
+    <!-- Link Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Cadastro de Produtos</h1>
+    <form id="formProd" action="/produtos/form" method="post" onsubmit="return validarDadosProd()">
+        <label for="nome">Nome do produto</label>
+        <input type="text" id="name" name="nome" placeholder="Digite o nome do produto">
+
+        <label for="preco">Preço</label>
+        <input type="text" id="preco" name="preco" placeholder="Digite o valor do produto">
+        
+        <label for="descricao">Descrição</label>
+        <textarea name="descricao" id="descricao"></textarea>
+        
+        <button type="submit">Enviar</button>
+        <a href="/home" id="btn-voltar" class="btn btn-outline-primary">Voltar</a>
+    </form>
+    <script type="text/javascript" src="http://localhost:3000/js/validador.js"></script>
+    <script>
+        document.querySelector('#formProd').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            if (validarDadosProd()) {
+                this.submit();
+            }
+        });
+
+        document.getElementById('name').addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+                this.classList.remove('campo-vazio');
+            }
+        });
+        document.getElementById('preco').addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+                this.classList.remove('campo-vazio');
+            }
+        });
+        document.getElementById('descricao').addEventListener('input', function () {
+            if (this.value.trim() !== '') {
+                this.classList.remove('campo-vazio');
+            }
+        });
+    </script>
+</body>
+</html>

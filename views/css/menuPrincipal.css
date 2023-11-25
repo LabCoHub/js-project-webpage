@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../img/undraw_website_7org.svg);
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center center;
+}
+.txt{
+    font-weight: bold !important;
+}
+.roxo{
+    background: #6C63FF !important;
+    color: #ffffff !important;
+}
+.roxo:hover{
+    background: #3e38ac !important;
+}
+.conteudoPrincipal{
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    align-items: center !important;
+}
